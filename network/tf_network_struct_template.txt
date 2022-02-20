@@ -1,0 +1,6 @@
+2;3//perceptron 0
+2;3//perceptron 1
+4//perceptron 2
+4//perceptron 3
+-42//perceptron 4
+-42//perceptron 5
