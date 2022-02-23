@@ -12,6 +12,7 @@ class Synapse:
 class Perceptron:
     id = 0
     nenter = 0
+    activFunc = None
 
     prev = None
     next = None
@@ -26,9 +27,11 @@ class Perceptron:
     nformed = 0
     nformedDelta = 0
 
-    def __init__(self, id, nenter) -> None:
+    def __init__(self, id, nenter, activ) -> None:
         self.id = id
         self.nenter = nenter
+        self.selectActivFunc(activ)
+
         self.prev = []
         self.next = []
         self.synapses = []
@@ -61,7 +64,7 @@ class Perceptron:
                     weight = self.get_synapse(prev.id).weight
                     r[e] += prev.exit[e] * weight
         
-                s[e] = self.sigmoid(r[e])
+                s[e] = self.activFunc(r[e])
 
             self.exit = s
 
@@ -105,6 +108,8 @@ class Perceptron:
             r = weight - (alpha * r)
             self.set_synapse(prev.id, r)
 
-    
-    def sigmoid(self, x):
-        return 1/(1+math.exp(-x))
+    def selectActivFunc(self, activ):
+        if activ == "sigmoid":
+            self.activFunc = lambda x : 1/(1+math.exp(-x))
+        if activ == "reLU":
+            self.activFunc = lambda x : 0 if (x<=0) else x

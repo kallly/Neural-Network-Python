@@ -12,6 +12,7 @@ class Network:
 
     perceptron = []
     pos = []
+    activ = []
 
     def __init__(self, descFileName, structFileName, initValue, nenter) -> None:
         self.nenter = nenter
@@ -32,14 +33,17 @@ class Network:
         structLines = structFile.readlines()
         
         for ligne in structLines:
-            self.pos.append(self.fm(ligne))
+            data = ligne.split("//")[0].split(";")
+            self.activ.append(data[0])
+            self.pos.append([int(numeric_string) for numeric_string in data[1:]])
 
     def fm(self, txt):
         return [int(numeric_string) for numeric_string in txt.split("//")[0].split(";")]
 
+
     def generatesPreceptron(self):
         for n in range(self.nPerceptron):
-            perceptron = Perceptron(n, self.nenter)
+            perceptron = Perceptron(n, self.nenter, self.activ[n])
             self.perceptron.append(perceptron)
             for enter in range(self.nenter):
                 self.perceptron[n].exit.append(0)

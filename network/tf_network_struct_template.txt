@@ -1,6 +1,6 @@
-2;3//perceptron 0
-2;3//perceptron 1
-4//perceptron 2
-4//perceptron 3
--42//perceptron 4
--42//perceptron 5
+sigmoid;2;3//perceptron 0
+sigmoid;2;3//perceptron 1
+sigmoid;4//perceptron 2
+sigmoid;4//perceptron 3
+sigmoid;-42//perceptron 4
+sigmoid;-42//perceptron 5
